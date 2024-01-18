@@ -9,7 +9,6 @@ La aplicación Todo App es una aplicación de lista de tareas que permite a los 
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- React (opcional, dependiendo de las necesidades)
 
 ## Funcionalidades
 
