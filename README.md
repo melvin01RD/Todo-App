@@ -53,7 +53,7 @@ La aplicación Todo App es una aplicación de lista de tareas que permite a los 
 
 ## Instrucciones de Ejecución
 
-1. Clona el repositorio: `git clone https://github.com/tu-usuario/todo-app.git`
+1. Clona el repositorio: `git clone https://github.com/melvin01RD/Todo-App`
 2. Abre `index.html` en tu navegador web.
 
 ## Posibles Mejoras Futuras
