@@ -305,7 +305,7 @@ body {
 
 .filters li a {
 	color: inherit;
-	margin: 3px;
+	margin: -2px;
 	padding: 3px 7px;
 	text-decoration: none;
 	border: 1px solid transparent;
@@ -322,7 +322,6 @@ body {
 
 .clear-completed,
 html .clear-completed:active {
-  padding:0.1px;
 	float: right;
 	position: relative;
 	line-height: 20px;
@@ -357,10 +356,9 @@ html .clear-completed:active {
 }
 
 /*
-Truco para quitar el fondo de Mobile Safari.
-No se puede usar globalmente ya que destruye las casillas de verificación en Firefox
+	Hack to remove background from Mobile Safari.
+	Can't use it globally since it destroys checkboxes in Firefox
 */
-
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	.toggle-all,
 	.todo-list li .toggle {

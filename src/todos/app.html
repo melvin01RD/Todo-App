@@ -1,0 +1,64 @@
+<section class="todoapp">
+    <header class="header">
+        <h1>Tareas</h1>
+        <input id="new-todo-input" class="new-todo" placeholder="¿Qué necesita ser hecho?" autofocus>
+    </header>
+    
+    <!--"Esta sección debería estar oculta por defecto y mostrarse cuando hay tareas pendientes."-->
+    <section class="main">
+        <input id="toggle-all" class="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">
+            <!-- Los elementos de la lista deben recibir la clase 'editing' cuando se están editando y 'completed' cuando se marcan como completados -->
+            <!-- <li class="completed" data-id="abc">
+                <div class="view">
+                    <input class="toggle" type="checkbox" checked>
+                    <label>Probar JavaScript</label>
+                    <button class="destroy"></button>
+                </div>
+                <input class="edit" value="Create a TodoMVC template">
+            </li> -->
+            <!-- <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox">
+                    <label>Comprar un unicornio</label>
+                    <button class="destroy"></button>
+                </div>
+                <input class="edit" value="Rule the web">
+            </li> -->
+        </ul>
+    </section>
+
+        <!--"Este pie de página debería estar oculto por defecto y mostrarse cuando hay tareas pendientes. -->
+    <footer class="footer">
+        <!-- este deberia ser  "0 items left" by default -->
+        <span class="todo-count"><strong id="pending-count">0</strong> pendiente(s)</span>
+        <!--"Elimina esto si no implementas enrutamiento -->
+        <ul class="filters">
+            <li>
+                <a class="selected filtro" class="selected" href="#/">Todos</a>
+            </li>
+            <li>
+                <a class="filtro" href="#/active">Pendientes</a>
+            </li>
+            <li>
+                <a class="filtro" href="#/completed">Completados</a>
+            </li>
+        </ul>
+        <!-- "Oculto si no quedan elementos completados ↓"↓ -->
+        <button class="clear-completed">Borrar completados</button>
+    </footer>
+</section>
+
+
+<footer class="info">
+
+</footer>
+    
+
+
+
+
+
+
+
