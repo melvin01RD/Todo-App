@@ -1,6 +1,15 @@
 
 
+import todoStore from '../store/todo.store';
 import html from './app.html?raw';
+import { renderTodos } from './uses-cases';
+
+
+
+const ElementIDs= {
+  todolist: '.todo-list',
+
+}
 
 
 
@@ -8,9 +17,19 @@ import html from './app.html?raw';
  *@param {String} elementid
  */
 
- export const App=(elementid)=>
+ export const App=(elementid)=>{
+     
+   
+ const DisplayTodo = ()=>{
+   
+  const Todo = todoStore.getTodo(todoStore.getCurrentFilter)
 
-    //Cuando la funcion se llama 
+   renderTodos(ElementIDs.todolist,Todo);
+
+ }
+
+
+ //Cuando la funcion App() se llama 
 
 
     (()=>{
@@ -18,5 +37,9 @@ import html from './app.html?raw';
       const app = document.createElement('div')
       app.innerHTML=html;
       document.querySelector(elementid).append(app)
+      DisplayTodo();
 
     })()
+
+
+  }

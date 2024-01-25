@@ -44,20 +44,23 @@ const  getTodo= (filter=filter.All)=>{
         return [...state.Todo];
     
         case filter.Completed:
-        return state.todo.filter(todo=>todo.done)
+        return state.Todo.filter(todo=>todo.done)
 
         case filter.Pending:
-        return state.todo.filter(todo=>!todo.done)
+        return state.Todo.filter(todo=>!todo.done)
 
-        default: throw new error(`opcion ${filter} no es permitido`)
+        default: throw new Error (`opcion ${filter} no es permitido`)
      
      
   }
 
 }
 
+
+
+
 const addTodo =(description)=>{
-   if (!description) throw error('description is required')
+   if (!description) throw Error ('description is required')
 
    state.Todo.push(new Todo(description));
 
@@ -70,7 +73,7 @@ const addTodo =(description)=>{
 const  toggloTodo = (TodoId)=>{
 
   state.Todo=state.Todo.map(Todo=>{
-    if(Todo.id===todoId){
+    if(Todo.id===Todo){
         Todo.done=!Todo.done;
     }
         return Todo
@@ -82,7 +85,7 @@ const  toggloTodo = (TodoId)=>{
 
 const  deleteTodo = (TodoId)=>{
 
-    state.Todo=state.Todo.filter(todo=>todoId!==todo.done)
+    state.Todo=state.Todo.filter(todo=>todo!==todo.done)
 
 }
 
@@ -97,7 +100,7 @@ const  setFilter = (newFilter=filter.All)=>{
       state.filter=newFilter;
 
       else{
-        throw new error('No existe el filtro');
+        throw new Error ('No existe el filtro');
       }
     }
  
@@ -110,6 +113,7 @@ const  getCurrentFilter= ()=>{
  
 export default {
 
+   
    addTodo,
    deleteComplete,
    deleteTodo,
