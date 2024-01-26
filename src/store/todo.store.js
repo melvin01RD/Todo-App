@@ -1,14 +1,14 @@
-import { Todo } from "../models/todo.models";
+import { Todo } from '../todos/models/todo.models';
 
 
-const filter={
+const filters={
     All: 'all',
     Completed:'Completed',
     Pending:'Pending'
 }
 const state = {
 
-Todo:[
+Todos:[
 
     new Todo('HTML'),
     new Todo('CSS'),
@@ -19,7 +19,7 @@ Todo:[
     new Todo('FireBase'),
 ],
 
- filter: filter.All,
+ filter: filters.All,
  
 }
 
@@ -32,22 +32,22 @@ const initStore = () => {
 
 const loadStore = ()=>{
 
-    throw new error ('no implementado')
+    throw new Error ('no implementado')
 }
 
 
-const  getTodo= (filter=filter.All)=>{
+const  getTodo= (filter=filter.All) => {
 
     switch (filter) {
         case filter.All:
     
-        return [...state.Todo];
+        return [...state.Todos];
     
         case filter.Completed:
-        return state.Todo.filter(todo=>todo.done)
+        return state.Todos.filter(todo=>todo.done)
 
         case filter.Pending:
-        return state.Todo.filter(todo=>!todo.done)
+        return state.Todos.filter(todo=>!todo.done)
 
         default: throw new Error (`opcion ${filter} no es permitido`)
      
@@ -57,12 +57,14 @@ const  getTodo= (filter=filter.All)=>{
 }
 
 
-
+/**
+ * @param {String} description
+ */
 
 const addTodo =(description)=>{
    if (!description) throw Error ('description is required')
 
-   state.Todo.push(new Todo(description));
+   state.Todos.push(new Todo(description));
 
 }
 
@@ -70,13 +72,13 @@ const addTodo =(description)=>{
  *@param {String} todoId  todo indentifier
  */
 
-const  toggloTodo = (TodoId)=>{
+const  toggloTodo = (todoId)=>{
 
-  state.Todo=state.Todo.map(Todo=>{
-    if(Todo.id===Todo){
-        Todo.done=!Todo.done;
+  state.Todos=state.Todos.map(Todo=>{
+    if(todo.id===todoId){
+        todo.done=!todo.done;
     }
-        return Todo
+        return todo
 
   });
 
@@ -85,18 +87,22 @@ const  toggloTodo = (TodoId)=>{
 
 const  deleteTodo = (TodoId)=>{
 
-    state.Todo=state.Todo.filter(todo=>todo!==todo.done)
+    state.Todos=state.Todos.filter(todo=>TodoId !==todo.done)
 
 }
 
 const  deleteComplete = (TodoId)=>{
 
-    state.Todo=state.Todo.filter(todo=>todo.done)
+    state.Todos=state.Todos.filter(todo=>todo.done)
 }
 
-const  setFilter = (newFilter=filter.All)=>{
+/**
+ *@param {filters} newFilter
+ */
 
-     if(Object.keys(filter).includes(newFilter))
+const  setFilter = (newFilter=filters.All)=>{
+
+     if(Object.keys(filters).includes(newFilter))
       state.filter=newFilter;
 
       else{

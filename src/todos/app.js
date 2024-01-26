@@ -22,7 +22,8 @@ const ElementIDs= {
    
  const DisplayTodo = ()=>{
    
-  const Todo = todoStore.getTodo(todoStore.getCurrentFilter)
+  const todos = todoStore.getTodo(todoStore.getCurrentFilter())
+  console.log(todos);
 
    renderTodos(ElementIDs.todolist,Todo);
 

@@ -1,5 +1,7 @@
-import { todo } from '../uses-cases';
-import { createTodoHTML } from './create-todo-html';
+import { createTodoHTML } from './';
+
+
+let element;
 
 
 /**
@@ -14,7 +16,7 @@ export const renderTodos = (elementId, todos = []) => {
   let arregloTodos = Object.values(todos);
 
   arregloTodos.forEach((Todo) => {
-    element.append(createTodoHTML(todoItem));
+    element.append(createTodoHTML(todo));
   });
 }
 
