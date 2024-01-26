@@ -1,5 +1,5 @@
 
-import { Todo } from '../models/todo.model';
+import { Todo } from '../models/todo.models';
 
 /** 
  * @param {Todo} todo 
