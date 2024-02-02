@@ -1,3 +1,4 @@
+import { Todo } from '../models/todo.models';
 import { createTodoHTML } from './';
 
 
@@ -6,18 +7,24 @@ let element;
 
 /**
  * @param {String} elementId 
- * @param {todo} todos  
+ * @param {Todo} todos  
  */
 
 
 export const renderTodos = (elementId, todos = []) => {
   const element = document.querySelector(elementId);
-    
-  let arregloTodos = Object.values(todos);
+  
+  if(!element)
+  element.querySelector(elementId)
 
-  arregloTodos.forEach((Todo) => {
-    element.append(createTodoHTML(todo));
+  if(!element) throw new Error (`Elemento no encontrado'${elementId}`);
+
+ element.innerHTML='';
+
+  todos.forEach((Todo) => {
+  element.append(createTodoHTML(Todo));
   });
+
 }
 
 
