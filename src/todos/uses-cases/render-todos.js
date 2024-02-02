@@ -14,18 +14,18 @@ let element;
 export const renderTodos = (elementId, todos = []) => {
   const element = document.querySelector(elementId);
   
-  if(!element)
-  element.querySelector(elementId)
+  if (!element) {
+    // Si el elemento no se encuentra, intenta corregirlo
+    throw new Error(`Elemento no encontrado '${elementId}'`);
+  }
 
-  if(!element) throw new Error (`Elemento no encontrado'${elementId}`);
-
- element.innerHTML='';
+  // Resto del código
+  element.innerHTML = '';
 
   todos.forEach((Todo) => {
-  element.append(createTodoHTML(Todo));
+    element.append(createTodoHTML(Todo));
   });
-
-}
+};
 
 
 

@@ -1,156 +1,117 @@
-import { Todo } from '../todos/models/todo.models';
+import { Todo } from '../todos/models/todo.model';
 
-
-export const filters={
+export const Filters = {
     All: 'all',
-    Completed:'Completed',
-    Pending:'Pending'
-};
+    Completed: 'Completed',
+    Pending: 'Pending'
+}
 
 const state = {
-
-Todos:[
-
-    new Todo('HTML'),
-    new Todo('CSS'),
-    new Todo('javascript'),
-    new Todo('java'    ),
-    new Todo('NodeJs'  ),
-    new Todo('React'   ),
-    new Todo('FireBase'),
-],
-
- filter: filters.All,
- 
+    todos: [
+        new Todo('Pieda del alma'),
+        new Todo('Pieda del espacio'),
+        new Todo('Pieda del tiempo'),
+        new Todo('Pieda del poder'),
+        new Todo('Pieda del realidad'),
+    ],
+    filter: Filters.All,
 }
 
- 
+
 const initStore = () => {
     loadStore();
-    console.log("InitStore ")
-};
+    console.log('InitStore 🥑');
+}
+
+const loadStore = () => {
+    if( !localStorage.getItem('state') ) return;
+
+    const { todos = [], filter = Filters.All } = JSON.parse( localStorage.getItem('state') );
+    state.todos = todos;
+    state.filter = filter;
+}
+
+const saveStateToLocalStorage = () =>{
+    localStorage.setItem('state', JSON.stringify(state) );
+}
 
 
-const loadStore = ()=>{
+const getTodos = ( filter = Filters.All ) => {
+    
+    switch( filter ) {
+        case Filters.All:
+            return [...state.todos];
+        
+        case Filters.Completed:
+            return state.todos.filter( todo => todo.done );
 
-    if(!localStorage.getItem('state')){ return;
+        case Filters.Pending:
+            return state.todos.filter( todo => !todo.done );
 
-        const {todo=[], filter=filters.All} =JSON.parse(localStorage.getItem('state'));
-        state.Todos=todo
-        state.filter=filter
+        default:
+            throw new Error(`Option ${ filter } is not valid.`);
     }
-
-}
-
-
-const saveStateToLocalStorage= () =>{
-
-    localStorage.setItem('state', JSON.stringify(state))
-
-
-}
-
-const getTodos = (filter = filters.All) => {
-	switch (filter) {
-		case filter.All:
-			return [...state.Todos]
-		case filter.Completed:
-			return state.Todos.filter((todo) => todo.done);
-		case filter.Pending:
-			return state.Todos.filter((todo) => !todo.done);
-		default:
-			throw new Error(`Option ${filter} is not valid`);
-	}
-};
-
-
-
-/**
- * @param {String} description
- */
-
-const addTodo =(description)=>{
-   if (!description) throw Error ('description is required')
-
-   state.Todos.push(new Todo(description));
-
-   saveStateToLocalStorage();
-
 }
 
 /**
- *@param {String} todoId  todo indentifier
+ * 
+ * @param {String} description 
  */
+const addTodo = ( description ) => {
+    if ( !description ) throw new Error('Description is required');
+    state.todos.push( new Todo(description) );
 
-const  toggloTodo = (todoId)=>{
-
-  state.Todos=state.Todos.map(Todo=>{
-    if(Todo.id===todoId){
-        Todo.done=!Todo.done;
-    }
-        return Todo;
-
-  });
-
-  saveStateToLocalStorage();
-
-}
-  
-
-
-const deleteTodo = (TodoId) => {
-    state.Todos = state.Todos.filter(todo => TodoId !== todo.id); 
     saveStateToLocalStorage();
 }
 
+/**
+ * 
+ * @param {String} todoId
+ */
+const toggleTodo = ( todoId ) => {
+    
+    state.todos = state.todos.map( todo => {
+        if( todo.id === todoId ) {
+            todo.done = !todo.done;
+        }
+        return todo;
+    });
 
-
-
-const  deleteComplete = (TodoId)=>{
-
-    state.Todos=state.Todos.filter(todo=>!todo.done);
     saveStateToLocalStorage();
 }
 
+const deleteTodo = ( todoId ) => {
+    state.todos = state.todos.filter( todo => todo.id !== todoId  );
+    saveStateToLocalStorage();
+}
 
+const deleteCompleted = () => {
+    state.todos = state.todos.filter( todo => !todo.done );
+    saveStateToLocalStorage();
+}
 
 /**
- *@param {filters} newFilter
+ * 
+ * @param {Filters} newFilter 
  */
-
-const  setFilter = (newFilter=filters.All)=>{
+const setFilter = ( newFilter = Filters.All ) => {
     state.filter = newFilter;
     saveStateToLocalStorage();
-    
+}
+
+const getCurrentFilter = () => {
+    return state.filter;
+}
 
 
-    }
- 
-
-    const getCurrentFilter = () => {
-        return state.filter;
-     }
-     
- 
 export default {
-
-   
-   addTodo,
-   deleteComplete,
-   deleteTodo,
-   getCurrentFilter,
-   getTodos,
-   initStore,
-   loadStore,
-   setFilter,
-   toggloTodo,
-
-};
-
-    
-
-
-
-  
-
-
+    addTodo,
+    deleteCompleted,
+    deleteTodo,
+    getCurrentFilter,
+    getTodos,
+    initStore,
+    loadStore,
+    setFilter,
+    toggleTodo,
+}

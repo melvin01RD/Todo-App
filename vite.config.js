@@ -1,14 +1,14 @@
-  export default {
-    plugins: [],
-    resolve: {
-      extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.html'],
+export default {
+  plugins: [],
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.html'],
+  },
+  server: {
+    hmr: {
+      overlay: false,
     },
-
-
-    // Ejemplo de configuración de alias en vite.config.js
-      
-    alias: {
-      '@models': '/src/models',
-    },
-
-  };
+  },
+  alias: {
+    '@models': '/src/models',
+  },
+};
