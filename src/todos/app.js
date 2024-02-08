@@ -1,6 +1,7 @@
-import todoStore, { Filters } from '../store/todo.store';
+import todoStore from '../store/todo.store';
 import html from './app.html?raw';
-import { renderPending, renderTodos } from './use-cases';
+import { renderTodos } from './use-cases';
+
 
 
 const ElementIDs = {
